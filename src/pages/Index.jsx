@@ -1,9 +1,10 @@
-import { Container, Text, VStack, Heading, Box, Image, HStack, Link, Button } from "@chakra-ui/react";
-import { FaTwitter, FaLinkedin, FaGithub } from "react-icons/fa";
+import { Container, Text, VStack, Heading, Box, Image, HStack, Link, Button, useColorMode, IconButton } from "@chakra-ui/react";
+import { FaTwitter, FaLinkedin, FaGithub, FaSun, FaMoon } from "react-icons/fa";
 import { Link as RouterLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const Index = () => {
+  const { colorMode, toggleColorMode } = useColorMode();
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -13,6 +14,14 @@ const Index = () => {
 
   return (
     <Container centerContent maxW="container.md" py={10}>
+      <IconButton
+        aria-label="Toggle theme"
+        icon={colorMode === "light" ? <FaMoon /> : <FaSun />}
+        onClick={toggleColorMode}
+        position="fixed"
+        top="1rem"
+        right="1rem"
+      />
       <VStack spacing={8} align="stretch">
         <Box textAlign="center">
           <Heading as="h1" size="2xl" mb={4}>Welcome to My Blog</Heading>

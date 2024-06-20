@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useColorMode, IconButton } from "@chakra-ui/react";
+import { FaSun, FaMoon } from "react-icons/fa";
 import { Container, Heading, VStack, FormControl, FormLabel, Input, Textarea, Button } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
 const AddPost = () => {
+  const { colorMode, toggleColorMode } = useColorMode();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const navigate = useNavigate();
@@ -17,6 +20,14 @@ const AddPost = () => {
 
   return (
     <Container centerContent maxW="container.md" py={10}>
+      <IconButton
+        aria-label="Toggle theme"
+        icon={colorMode === "light" ? <FaMoon /> : <FaSun />}
+        onClick={toggleColorMode}
+        position="fixed"
+        top="1rem"
+        right="1rem"
+      />
       <VStack spacing={8} align="stretch">
         <Heading as="h1" size="2xl" mb={4}>Add New Post</Heading>
         <form onSubmit={handleSubmit}>
